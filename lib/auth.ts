@@ -14,5 +14,28 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       clientId,
       clientSecret
     })
-  ]
+  ],
+  pages: {
+    signIn: '/login' // página personalizada de login
+  },
+  callbacks: {
+    authorized({ auth, request: { nextUrl } }) {
+      const isLoggedIn = !!auth?.user;
+      const isLoginPage = nextUrl.pathname === '/login';
+
+      switch (true) {
+        // Usuario logueado intentando acceder a /login
+        case isLoggedIn && isLoginPage:
+          return Response.redirect(new URL('/', nextUrl));
+
+        // Página de login
+        case isLoginPage:
+          return true;
+
+        // Todas las demás rutas
+        default:
+          return isLoggedIn;
+      }
+    }
+  }
 });

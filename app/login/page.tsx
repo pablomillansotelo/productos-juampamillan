@@ -13,9 +13,9 @@ export default function LoginPage() {
     <div className="min-h-screen flex justify-center items-start md:items-center p-8">
       <Card className="w-full max-w-sm">
         <CardHeader>
-          <CardTitle className="text-2xl">Login</CardTitle>
+          <CardTitle className="text-2xl">Iniciar sesión</CardTitle>
           <CardDescription>
-            This demo uses GitHub for authentication.
+            Sistema de productos de juampamillan.
           </CardDescription>
         </CardHeader>
         <CardFooter>
@@ -28,7 +28,7 @@ export default function LoginPage() {
             }}
             className="w-full"
           >
-            <Button className="w-full">Sign in with GitHub</Button>
+            <Button className="w-full">Iniciar sesión con GitHub</Button>
           </form>
         </CardFooter>
       </Card>

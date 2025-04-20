@@ -87,7 +87,7 @@ export function Spinner() {
   );
 }
 
-export function Logo() {
+export function Logo(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       width="32"
@@ -108,6 +108,36 @@ export function Logo() {
   );
 }
 
+export function LauncherIcon(props: React.SVGProps<SVGSVGElement>) {
+  const dots = [
+    [10, 10],
+    [16, 10],
+    [22, 10],
+    [10, 16],
+    [16, 16],
+    [22, 16],
+    [10, 22],
+    [16, 22],
+    [22, 22]
+  ];
+
+  return (
+    <svg
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
+      fill="none"
+      className="text-gray-100"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect width="100%" height="100%" rx="16" fill="currentColor" />
+      {dots.map(([cx, cy], i) => (
+        <circle key={i} cx={cx} cy={cy} r="2" fill="black" />
+      ))}
+    </svg>
+  );
+}
+
 export function VercelLogo(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -121,6 +151,28 @@ export function VercelLogo(props: React.SVGProps<SVGSVGElement>) {
         d="M37.5896 0.25L74.5396 64.25H0.639648L37.5896 0.25Z"
         fill="currentColor"
       ></path>
+    </svg>
+  );
+}
+
+export function SystemUsersIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="9" cy="7" r="4" />
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+      <circle cx="17" cy="7" r="4" />
+      <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
     </svg>
   );
 }
