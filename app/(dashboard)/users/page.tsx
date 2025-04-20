@@ -1,15 +1,21 @@
 import { getUsers } from '@/lib/db';
 import { UsersTable } from './users-table';
 import { Search } from './search';
+import { useSearchParams } from 'next/navigation';
 
-export default async function IndexPage({
-  searchParams
-}: {
-  searchParams?: { q?: string; offset?: string };
+// If you want to use a separate type
+
+export default async function Page(props: {
+  searchParams?: Promise<{
+    query?: string;
+    offset?: string;
+  }>;
 }) {
   // Asegúrate de que searchParams sea tratado correctamente
-  const search = searchParams?.q ?? '';
-  const offset = searchParams?.offset ? Number(searchParams.offset) : 0;
+  const searchParams = await props.searchParams;
+  const search = searchParams?.query || '';
+  const offset =
+    typeof searchParams?.offset === 'string' ? Number(searchParams?.query) : 0;
 
   try {
     const { users, newOffset } = await getUsers(search, offset);
@@ -32,7 +38,9 @@ export default async function IndexPage({
         <div className="flex items-center mb-8">
           <h1 className="font-semibold text-lg md:text-2xl">Users</h1>
         </div>
-        <p className="text-red-500">Error loading users. Please try again later.</p>
+        <p className="text-red-500">
+          Error loading users. Please try again later.
+        </p>
       </main>
     );
   }
